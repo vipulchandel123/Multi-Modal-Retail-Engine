@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engine & E-Commerce Suite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🤖 AI Engine Suite</div>
+        <nav id="nav-tabs">
+            <button onclick="switchTab('products')" class="active">Products</button>
+            <button onclick="switchTab('cart')">Cart (<span id="cart-count">0</span>)</button>
+            <button onclick="switchTab('orders')">Orders</button>
+            <button onclick="switchTab('voids')">YOLO Voids</button>
+            <button onclick="switchTab('sentiment')">Sentiment</button>
+        </nav>
+        <div class="auth-status" id="auth-status-div">
+            <button class="btn btn-outline" onclick="showAuthModal('login')">Login</button>
+            <button class="btn" onclick="showAuthModal('signup')">Sign Up</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- AUTH SECTION -->
+        <div id="auth-section" class="auth-container">
+            <h2 id="auth-title">Login</h2>
+            <br>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="auth-user" value="admin">
+            </div>
+            <div class="form-group" id="email-group" style="display:none;">
+                <label>Email</label>
+                <input type="email" id="auth-email" placeholder="test@gmail.com">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="auth-pass" value="secretrootpass">
+            </div>
+            <button class="btn" style="width: 100%;" onclick="handleAuthSubmit()" id="auth-submit-btn">Login</button>
+            <p style="margin-top: 10px; font-size: 0.85rem; text-align: center;">
+                <a href="#" onclick="toggleAuthMode()" id="auth-toggle-link">Don't have an account? Sign Up</a>
+            </p>
+        </div>
+
+        <!-- TAB 1: PRODUCTS -->
+        <div id="tab-products" class="tab-content">
+            <h2>Products Catalog</h2>
+            <br>
+            <div class="grid" id="products-grid">Loading products...</div>
+        </div>
+
+        <!-- TAB 2: CART -->
+        <div id="tab-cart" class="tab-content">
+            <h2>Shopping Cart</h2>
+            <br>
+            <div id="cart-container">Your cart is empty.</div>
+        </div>
+
+        <!-- TAB 3: ORDERS -->
+        <div id="tab-orders" class="tab-content">
+            <h2>Order History</h2>
+            <br>
+            <div id="orders-container">Loading orders...</div>
+        </div>
+
+        <!-- TAB 4: YOLO VOIDS -->
+        <div id="tab-voids" class="tab-content">
+            <h2>Retail Void Detection (YOLOv8)</h2>
+            <br>
+            <div class="form-group">
+                <input type="file" id="void-image-input" accept="image/*">
+            </div>
+            <button class="btn" onclick="uploadAndDetectVoids()">Analyze Image</button>
+            
+            <div class="preview-box">
+                <div>
+                    <h3>Annotated AI Preview</h3>
+                    <img id="void-annotated-img" src="" style="display:none;">
+                </div>
+            </div>
+            <br>
+            <pre id="void-json-output" style="background:#f1f5f9; padding:10px; border-radius:6px;"></pre>
+        </div>
+
+        <!-- TAB 5: SENTIMENT -->
+        <div id="tab-sentiment" class="tab-content">
+            <h2>Sentiment Analysis</h2>
+            <br>
+            <div class="form-group">
+                <textarea id="sentiment-text" rows="4">Great quality product and super fast shipment!</textarea>
+            </div>
+            <button class="btn" onclick="analyzeSentiment()">Analyze Sentiment</button>
+            <br><br>
+            <div id="sentiment-result"></div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Link -->
+    <script src="app.js"></script>
+</body>
+</html>
